@@ -1,0 +1,21 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: My workflow
+on:
+  push:
+    branches:
+      - "main"
+  workflow_dispatch:
+jobs:
+  deploy:
+    steps:
+      - uses: cloudbees-io/register-deployed-artifact@v2
+        with:
+          labels: demo-go-service
+          artifact-id: 286479bc-bed2-4a34-b8b0-87048b5b0988
+          target-environment: QA1
+      - uses: cloudbees-io/register-deployed-artifact@v2
+        with:
+          labels: demo-go-service
+          artifact-id: 286479bc-bed2-4a34-b8b0-87048b5b0988
+          target-environment: QA2
